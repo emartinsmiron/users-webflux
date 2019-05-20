@@ -49,10 +49,14 @@ public class UserController {
         return service.findById(userId);
     }
 
+    @GetMapping("/filter")
+    @ResponseStatus(HttpStatus.OK)
+    private Flux<User> findByParameters(@RequestBody final User user){
+        return service.findByParameter(user);
+    }
+
     @DeleteMapping("/{userId}")
     private Mono<Void> delete(@PathVariable("userId") final String userId){
         return service.delete(userId);
     }
-
-
 }

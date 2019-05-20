@@ -2,6 +2,8 @@ package br.com.eduardo.users.service;
 
 import br.com.eduardo.users.model.User;
 import br.com.eduardo.users.repository.UserRepository;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -34,5 +36,9 @@ public class UserService {
 
     public Mono<User> findById(String userId) {
         return userRepository.findById(userId);
+    }
+
+    public Flux<User> findByParameter(User user) {
+        return userRepository.findAll(Example.of(user));
     }
 }
